@@ -32,14 +32,14 @@ router.post('/create', verifyToken, async (req, res) => {
    try {
       const asyncSome = async (arr, predicate) => {
          for (let e of arr) {
-            if (await predicate(e)) return true;
+            if (await predicate(e)) return true
          }
-         return false;
+         return false
       };
 
       const flag = await asyncSome(newOrder.products, async (product) => {
          return product.quantity > (await Product.findById(product.product)).countInStock
-      });
+      })
 
       if (flag) {
          return res.status(400).json({ message: 'Product out of stock' })
@@ -75,8 +75,7 @@ router.post('/create', verifyToken, async (req, res) => {
             await newOrder.save()
             res.status(200).json('Order has been created')
          }).catch((err) => console.log(err))
-      }
-      else {
+      } else {
          await newOrder.save()
          res.status(200).json('Order has been created')
       }

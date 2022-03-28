@@ -193,6 +193,8 @@ const AdminPopup = styled(Popup)`
 const CartPopup = styled(Popup)`
   width: 310px;
   line-height: 1;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
 `
 
 const CartPopupHeader = styled.div`

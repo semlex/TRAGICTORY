@@ -102,7 +102,7 @@ const Order = () => {
             <InfoTitle>
                Статус доставки
             </InfoTitle>
-            {order.isDelivered && <InfoText>Доставлен {order.deliveredAt}</InfoText>}
+            {order.isDelivered && <InfoText>Доставлен {moment(order.deliveredAt).format('DD.MM.YYYY HH:mm')}</InfoText>}
             {!order.isDelivered && <InfoText>Отправлен</InfoText>}
          </OrderInfo>}
       </Container>
