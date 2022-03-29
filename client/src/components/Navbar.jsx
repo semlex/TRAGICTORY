@@ -124,8 +124,6 @@ const HeaderButton = styled.button`
   ${({ isVisible }) => isVisible && `
     display: inline-block
   `};
-
-  ${sm({ display: 'inline-block' })}
 `
 
 const HeaderButtonInner = styled.div`
