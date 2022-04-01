@@ -118,7 +118,8 @@ const ProductsList = () => {
             setMinPrice(res.data.min_price)
             setMaxPrice(res.data.max_price)
          }).catch((err) => {})
-      };
+      }
+      setFilters({ sizes: [], brands: [], min_price: 0, max_price: 0 })
       getFilters()
    }, [category])
 
