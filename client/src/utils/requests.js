@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const BASE_URL = 'http://tragictory.ru/api/'
+const BASE_URL = 'https://tragictory.ru/api/'
 
 const getCurrentToken = () => {
    const user = JSON.parse(localStorage.getItem('persist:auth'))

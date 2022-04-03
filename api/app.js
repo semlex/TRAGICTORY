@@ -1,4 +1,7 @@
 const express = require('express')
+const fs = require('fs')
+const http = require('http')
+const https = require('https')
 const cors = require('cors')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
@@ -9,6 +12,9 @@ const orderRoute = require('./routes/order')
 const path = require('path')
 
 dotenv.config()
+
+const cert = fs.readFileSync('cert.pem')
+const key = fs.readFileSync('key.pem')
 
 const app = express()
 
@@ -36,8 +42,16 @@ async function start() {
             console.log(err)
          })
 
-      app.listen(process.env.PORT || 5000,
-         () => console.log(`App has been started on port ${process.env.PORT}...`)
+      https.createServer({ key, cert }, app)
+         .listen(process.env.HTTPS_PORT,
+            () => console.log(`App has been started on port ${process.env.HTTPS_PORT}...`)
+      )
+
+      http.createServer(function (req, res) {
+         res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url })
+         res.end()
+      }).listen(process.env.HTTP_PORT,
+         () => console.log(`App has been started on port ${process.env.HTTP_PORT}...`)
       )
    } catch (e) {
       console.log('Server Error', e.message)
