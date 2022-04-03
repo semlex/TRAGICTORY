@@ -109,7 +109,20 @@ router.put('/update/:id', verifyTokenAndAdmin, async (req, res) => {
 
 router.delete('/delete/:id', verifyTokenAndAdmin, async (req, res) => {
    try {
-      await Order.findByIdAndDelete(req.params.id)
+      const order = await Order.findById(req.params.id)
+      for (const item of order.products) {
+         const product = await Product.findById(item.product)
+         await Product.findByIdAndUpdate(
+            item.product,
+            {
+               $set: {
+                  countInStock: product.countInStock + item.quantity
+               }
+            }
+         )
+      }
+
+      await order.deleteOne()
       res.status(200).json({ message: 'Order has been deleted...' })
    } catch (err) {
       res.status(500).json(err)
