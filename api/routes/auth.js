@@ -91,7 +91,7 @@ router.post('/login',
          })
       }
 
-      const {email, password} = req.body
+      const { email, password } = req.body
 
       const user = await User.findOne({ email })
 

@@ -143,42 +143,6 @@ const UsersList = () => {
                customStyles={customStyles}
                paginationComponentOptions={ { rowsPerPageText: 'Строк' } }
             />
-            {/*<TableWrapper>*/}
-            {/*   <Table>*/}
-            {/*      <Thead>*/}
-            {/*         <Tr>*/}
-            {/*            <Th>ID</Th>*/}
-            {/*            <Th>Email</Th>*/}
-            {/*            <Th>Фамилия</Th>*/}
-            {/*            <Th>Имя</Th>*/}
-            {/*            <Th>Админ</Th>*/}
-            {/*            <Th>Действия</Th>*/}
-            {/*         </Tr>*/}
-            {/*      </Thead>*/}
-            {/*      <Tbody>*/}
-            {/*         {users.map((item, i) => (*/}
-            {/*            <Tr key={i}>*/}
-            {/*               <Td>{item._id}</Td>*/}
-            {/*               <Td>{item.email}</Td>*/}
-            {/*               <Td>{item.surname}</Td>*/}
-            {/*               <Td>{item.name}</Td>*/}
-            {/*               <Td>*/}
-            {/*                  <Checkbox*/}
-            {/*                     type={'checkbox'}*/}
-            {/*                     checked={item.isAdmin}*/}
-            {/*                     onChange={() => makeAdmin(item)}*/}
-            {/*                  />*/}
-            {/*               </Td>*/}
-            {/*               <Td>*/}
-            {/*                  <Button onClick={() => deleteUser(item._id)}>*/}
-            {/*                     Удалить <IoIosCloseCircle/>*/}
-            {/*                  </Button>*/}
-            {/*               </Td>*/}
-            {/*            </Tr>*/}
-            {/*         ))}*/}
-            {/*      </Tbody>*/}
-            {/*   </Table>*/}
-            {/*</TableWrapper>*/}
          </Container>
       </>
    )
