@@ -70,11 +70,12 @@ router.post('/create', verifyToken, async (req, res) => {
             },
             capture: false
          }).then(async (resolve) => {
-            console.log(resolve)
             newOrder.paidAt = Date.now()
             await newOrder.save()
             res.status(200).json('Order has been created')
-         }).catch((err) => console.log(err))
+         }).catch((err) => {
+            res.status(400).json(err)
+         })
       } else {
          await newOrder.save()
          res.status(200).json('Order has been created')
