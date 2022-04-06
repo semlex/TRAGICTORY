@@ -47,7 +47,7 @@ const UsersList = () => {
    const dispatch = useDispatch()
 
    const makeAdmin = async (updatingUser) => {
-      await userRequest.put(`/users/update/${updatingUser._id}`, { isAdmin: !updatingUser.isAdmin })
+      await userRequest.put(`/users/make-admin/${updatingUser._id}`, { isAdmin: !updatingUser.isAdmin })
          .then((res) => {
             getUsers()
             if (user.userId === updatingUser._id) {

@@ -40,10 +40,11 @@ router.put('/update/:id', verifyTokenAndAuthorization, async (req, res) => {
    }
 
    try {
+      const { isAdmin, ...others } = req.body
       const updatedUser = await User.findByIdAndUpdate(
          req.params.id,
          {
-            $set: req.body,
+            $set: others
          },
          { new: true }
       )
@@ -57,6 +58,27 @@ router.put('/update/:id', verifyTokenAndAuthorization, async (req, res) => {
       })
    } catch (err) {
       res.status(500).json(err);
+   }
+})
+
+// MAKE ADMIN
+
+router.put('/make-admin/:id', verifyTokenAndAdmin, async(req, res) => {
+   try {
+      const { isAdmin } = req.body
+      if (isAdmin !== undefined) {
+         await User.findByIdAndUpdate(
+            req.params.id,
+            {
+               $set: req.body,
+            }
+         )
+         res.status(200).json({ message: 'User has been updated' })
+      } else {
+         return res.status(400).send({ message: 'Need a user isAdmin status' })
+      }
+   } catch (err) {
+      res.status(500).json(err)
    }
 })
 
