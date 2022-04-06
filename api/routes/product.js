@@ -159,6 +159,17 @@ router.get('/popular', async (req, res) => {
    }
 })
 
+//GET ALL PRODUCTS FOR ADMIN
+
+router.get('/admin', verifyTokenAndAdmin, async (req, res) => {
+   try {
+      const products = await Product.find()
+      res.status(200).json(products)
+   } catch (err) {
+      res.status(500).json(err)
+   }
+})
+
 //GET PRODUCT
 
 router.get('/:id', async (req, res) => {
