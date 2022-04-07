@@ -230,7 +230,7 @@ const Search = () => {
                         maxPrice,
                      }
                   }
-                  sort
+                  sort={sort.value}
                   itemsPerPage={20}
                />
             </>
